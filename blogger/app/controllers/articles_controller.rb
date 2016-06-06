@@ -47,6 +47,13 @@ def update
 	redirect_to article_path(@article)
 end
 
+before_filter :require_login, only: [:new, :create, :edit, :update, :destroy]
+
+def require_login
+	unless current_user
+		redirect_to login_path
+	end
+end
 
 
 end
